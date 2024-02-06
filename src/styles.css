@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none!important;
+}
+
+.cursor-pointer {
+    cursor:  pointer;
+}
+
+.slick-slide {
+    margin: 0 5px;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 35px;
+}
+
+.slick-next {
+    right: 25px!important;
+    z-index: 1;
+}
+
+.slick-prev {
+    left: 25px!important;
+    z-index: 1;
+}
+
+.slick-next, .slick-prev, 
+.slick-next:hover, .slick-prev:hover,
+.slick-next:focus, .slick-prev:focus,
+.slick-next:active, .slick-prev:active {
+    height: 35px;
+    width: 35px;
+}
+
+.slick-dotted.slick-slider {
+    margin-bottom: 0;
+}
+
+.slick-dots {
+    bottom: 1rem;
+}
+
+
+.videoModal .modal-content {
+    background: transparent;
+}
+
+.seatNumber .modal-body {
+    padding: 1.5rem 1rem;
+}
+
+.modal-lg.seatArrangement {
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.seatArrangement .modal-content {
+    height: 100vh;
+    max-height: 100vh;    
+}
+
+.seatArrangement .modal-body {
+    height: 90vh;
+    max-height: 90vh;
+    overflow-y: auto;    
+}
+
+.seatArrangement .modal-header .close {
+    padding: 0.25rem;
+    margin: 0;
+}
+
+.seatArrangement .modal-header .no-of-seats {
+    margin: 0.35rem 1rem;
+}
+
+.seatArrangement .modal-header .modal-title {
+    margin-right: auto;
+}

@@ -1,0 +1,60 @@
+<bms-carousel></bms-carousel>
+
+<div class="container py-3">
+    <div class="row mt-3">
+        <div class="col">
+            <div class="form-group">
+                <label>Name</label>
+                <p class="">{{loggedInUser.first_name}} {{loggedInUser.last_name}}</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label>Phone</label>
+                <p class="">{{loggedInUser.phone_number}}</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label>Email</label>
+                <p class="">{{loggedInUser.email}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="form-group">
+                <p class="">Booking History</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let booking of bookings">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img [src]="getImage(booking.movie_name)" height="200px" />
+                            </div>
+                            <div class="col-md-8">
+                                <p class="font-weight-bold">{{booking.movie_name}}</p>
+                                <p class=""><i class="fas fa-map-marker-alt"></i> {{booking.theatre_name}}</p>
+                                <p class=""><i class="far fa-calendar-alt"></i> {{booking.date | date:"EEEE, MMMM d, y"}}</p>
+                                <p class="">Seats: <span class=""
+                                        *ngFor="let seat of booking?.seats; let lastitem = last">
+                                        {{seat.category}} - {{seat.row}}{{seat.column}}
+                                        <span *ngIf="!lastitem">, </span>
+                                    </span></p>
+                            </div>
+                            <div class="col-md-2">
+                                    <p class="m-0">Booking ID</p>
+                                    <p class="font-weight-bold">{{booking.booking_id}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

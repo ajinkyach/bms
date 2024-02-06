@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ticket</title>
+  <base href="/">
+  <meta itemprop="name" content="BookMyShow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+    .loading-wrapper {
+      display: table-cell;
+      height: 100vh;
+      text-align: center;
+      width: 100vw;
+      vertical-align: middle;
+    }
+  </style>
+  <!-- <style>
+      #grid {
+        grid-column-gap: 10px!important;        
+      }
+      .overlay-left,
+      .overlay-right {
+          background-color: transparent !important;
+      }
+      .image-cropper img {
+        max-width: max-content!important;            
+      }
+  </style> -->
+
+</head>
+
+<body>
+  <app-root>
+    <div class="loading-wrapper">
+      <img src="assets/defaults/loader.gif" height="125" class="img-responsive" />
+    </div>
+  </app-root>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<div class="container-fluid px-7 py-3">
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col" *ngIf="!success">
+            <div class="card">
+                <diV class="card-body">
+                    <p class="small font-weight-bold">BOOKING SUMMARY</p>
+                    <div class="row">
+                        <div class="col text-left">
+                            <p class="small">{{booking?.seats.length}} tickets</p>
+                            <span class="small" *ngFor="let seat of booking?.seats; let lastitem = last">
+                                {{seat.category}} - {{seat.row}}{{seat.column}}
+                                <span *ngIf="!lastitem">, </span>
+                            </span>
+                        </div>
+                        <div class="col text-right">
+                            <p class="font-weight-bold">{{booking?.price | currency: 'INR'}}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col text-left">
+                            <p class="font-weight-bold">Total Amount</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="font-weight-bold">{{booking?.price | currency: 'INR'}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" [disabled]="!isLoggedIn" class="btn btn-primary btn-block"
+                                (click)="pay()">Pay</button>
+                                <br/>
+                            <div class="alert alert-danger" *ngIf="!isLoggedIn" role="alert">
+                                Please log in to book your tickets
+                            </div>
+                        </div>
+                    </div>
+                </diV>
+            </div>
+        </div>
+        <div class="col" *ngIf="success">
+            <div class="card">
+                <diV class="card-body">
+                    <p class="small font-weight-bold">BOOKING SUMMARY</p>
+                    <div class="row">
+                        <div class="col text-left">
+                            <p class="small">{{booking?.seats.length}} tickets</p>
+                            <span class="small" *ngFor="let seat of booking?.seats; let lastitem = last">
+                                {{seat.category}} - {{seat.row}}{{seat.column}}
+                                <span *ngIf="!lastitem">, </span>
+                            </span>
+                        </div>
+                        <div class="col text-right">
+                            <p class="font-weight-bold">{{booking?.price | currency: 'INR'}}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col text-left">
+                            <p class="font-weight-bold">Booking ID</p>
+                            <p class="font-weight-bold">{{booking?.booking_id}}</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="font-weight-bold">Status</p>
+                            <p class=""><span class="badge badge-pill badge-success">Booked</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary btn-block" routerLink="/">Back to Home</button>
+                        </div>
+                    </div>
+                </diV>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>

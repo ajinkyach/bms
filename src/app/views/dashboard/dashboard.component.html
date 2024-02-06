@@ -1,0 +1,43 @@
+<bms-carousel></bms-carousel>
+
+<div class="container py-3">
+  <div class="row mt-3">
+    <div class="col-md-3">
+      <h5>Trending Movies</h5>
+      <ul class="list-group trending">
+        <li class="list-group-item" *ngFor="let movie of trends">
+          <a routerLink="/" class="m-0 text-dark">{{movie.term}}</a>
+          <p class="small m-0 font-weight-light">Movies</p>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <h5>Movies</h5>
+      <!-- <a class="small view-link" routerLink="/movies">View All</a> -->
+      <div>
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+          <div ngxSlickItem *ngFor="let movie of movies" class="slide" (click)="goToDetails(movie)">
+            <ul class="list-group cursor-pointer">
+              <li class="list-group-item">
+                <img [src]="getImage(movie.image)" alt="" width="100%">
+              </li>
+              <li class="list-group-item">
+                <div class="row p-2">
+                  <div class="col-md-4 pr-0">
+                    <i class="fas fa-heart text-danger"></i>   
+                    <span class="text-secondary">{{" " + movie.overall_rating}}%</span>
+                  </div>
+                  <div class="col-md-8 pl-0">
+                    <p class="mb-1 text-dark">{{movie.name}}</p>
+                    <p class="m-0 text-muted small">{{certifications[movie.certification]}} | {{movie.genre[0]}} |
+                      {{movie.languages[0]}}</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="cover-img" [ngStyle]="bgImage">
+  <div class="overlay">
+    <div class="play-button" (click)="playVideo(videoModal)">
+      <i class="far fa-play-circle"></i>
+    </div>
+  </div>
+</div>
+<div class="container-fluid wrapper px-7">
+  <div class="row">
+    <div class="col-md-2 mr-3">
+      <img [src]="getImage(movie.image, 1)" alt="" class="movieImg" />
+    </div>
+    <div class="col-md-9 pl-5 text-white">
+      <p></p>
+      <h3><strong>{{movie?.name}}</strong></h3>
+      <p class="mt-3">{{certifications[movie?.certification]}} |
+        <span *ngFor="let lang of movie?.languages; let last = last">
+          {{lang}}
+          <span *ngIf="!last">, </span>
+        </span>
+      </p>
+      <p>
+        <span class="badge badge-pill badge-light mr-2" *ngFor="let item of movie?.genre">{{item}}</span>
+      </p>
+      <p>
+        <span class="mr-3"><i class="far fa-calendar-alt mr-2"></i>{{movie?.release_date | releaseDate}}</span>
+        <span class="mr-3"><i class="far fa-clock mr-2"></i>{{movie?.runtime | runtime: {mins: movie?.runtime} }}</span>
+      </p>
+    </div>
+  </div>
+  <div class="row wrapper">
+    <div class="col-md-2 py-3 ml-5">
+
+    </div>
+    <div class="col-md-7 px-0 py-3 ">
+      <h5>Synopsis</h5>
+      <p class="lead small text-justify">{{movie?.summary}}</p>
+
+      <h5>Cast</h5>
+      <div class="row">
+        <div class="col-md-3 text-center p-4" *ngFor="let actor of movie?.cast">
+          <img [src]="getImage(actor.image)" height="125px" class="profile mb-2" />   
+          <p class="mb-1 text-success">{{actor.name}}</p> 
+          <p class="mb-1 text-muted small">Actor</p>      
+          <p class="text-ellipsis small">As {{actor.role}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col py-3">
+      <button type="button" class="btn btn-primary float-right btn-block" (click)="buytickets()">Book Tickets</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #videoModal>
+  <div class="modal-body p-0 text-center">
+    <div>
+      <div [innerHTML]="movie?.video | textAsHTML"></div>
+    </div>
+  </div>
+</ng-template>

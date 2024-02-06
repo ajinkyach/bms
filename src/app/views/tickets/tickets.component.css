@@ -1,0 +1,129 @@
+
+.cover-img {
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    background-position: center center!important;
+    display: block!important;
+    height: 250px;
+    width: 100%;
+    margin: 0 auto;
+    -o-object-fit: cover;
+    object-fit: cover!important;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.overlay {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: -webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,0)),color-stop(27%,rgba(0,0,0,0)),to(rgba(0,0,0,.65)));
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 27%,rgba(0,0,0,.65) 100%);
+}
+
+.details-wrapper {
+    margin: -100px 0 auto;
+    position: absolute;
+}
+
+.px-7 {
+    padding-right: 5rem;
+    padding-left: 5rem;
+}
+
+.nav-link {   
+    color: #444;
+}
+
+.nav-item:hover > .nav-link:not(.active) {    
+    color: #49ba8e;
+}
+
+
+.nav-link.active {
+    background-color: #49ba8e;
+}
+
+.list-group-item {
+    border: none;
+    margin: 2px;
+}
+
+.list-group-item:first-child, .list-group-item:last-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.timing {
+    padding: 10px 15px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #06f;
+    border: 1px solid #ddd;
+    margin: 0 15px;
+}
+
+.timing:hover, .timing:focus, .timing:active {
+    background-color: #fff!important;
+    color: #06f!important;
+    border: 1px solid #ddd!important;
+    box-shadow: none!important;
+}
+
+.seat-table td hr {
+    margin: 0.1rem!important;
+}
+
+.seat-table {
+    margin: 0 auto;
+}
+
+.seat-table tr {
+    height: 40px;
+}
+
+.seat {
+    margin: 1px 2px;
+    float: left;
+    width: 21px;
+    height: 21px;
+}
+
+.seat a {
+    display: inline-block;
+    font-size: 10.5px;
+    line-height: 18px;
+    font-weight: 400;
+    border: 1px solid #a7a7a7;
+    /* display: inline-block; */
+    width: 21px;
+    height: 21px;
+    border-radius: 26%;
+    color: #666;
+    text-align: center;
+    /* font-size: 11px; */
+}
+
+.seat a.available:hover {
+    background: #2dc492;
+    color: #fff!important;
+}
+
+.seat a.selected {
+    background: #2dc492;
+    color: #fff!important;
+}
+
+.seat a.blocked {
+    background: #d8d8d8;
+    cursor: text;
+    color: #fff!important;
+}
+
+.price {
+    margin-top: 1rem;
+}

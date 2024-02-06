@@ -1,0 +1,89 @@
+.movieImg {
+    object-fit: cover;
+    width: 232px;
+    height: 349px;    
+}
+
+.headerImg {
+    object-fit: cover;
+    width: 100%;
+    height: 370px;
+}
+
+.movieInfo {
+    position: absolute;
+    top: -175px;
+    left: 80px;
+}
+
+.cover-img {
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    background-position: center center!important;
+    display: block!important;
+    height: 370px;
+    width: 100%;
+    margin: 0 auto;
+    -o-object-fit: cover;
+    object-fit: cover!important;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.overlay {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    height: 370px;
+    background: -webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,0)),color-stop(27%,rgba(0,0,0,0)),to(rgba(0,0,0,.65)));
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 27%,rgba(0,0,0,.65) 100%);
+}
+
+.play-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 75px;
+    height: 75px;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.play-button i {
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    opacity: .75;
+    overflow: visible;
+    font-size: 5rem;
+    color: #fff;
+}
+
+.play-button i:hover {
+    -webkit-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+    opacity: 1;
+}
+
+.px-7 {
+    padding-right: 5rem;
+    padding-left: 5rem;
+}
+
+.wrapper {
+    margin: -175px 0 auto;
+}
+
+.profile {
+    border-radius: 50%;
+}
+
+.text-ellipsis {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

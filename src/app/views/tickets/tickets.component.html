@@ -1,0 +1,332 @@
+<div class="cover-img" [ngStyle]="bgImage">
+    <div class="overlay">
+
+    </div>
+</div>
+<div class="container-fluid px-7">
+    <div class="row details-wrapper text-light">
+        <div class="col-md-12">
+            <h3 class="">{{movie.name}}</h3>
+            <span class="mt-3">{{certifications[movie?.certification]}} |
+                <span *ngFor="let lang of movie?.languages; let last = last">
+                    {{lang}}
+                    <span *ngIf="!last">, </span>
+                </span>
+            </span>
+            <span>
+                <span class="badge badge-pill badge-light mr-2" *ngFor="let item of movie?.genre">{{item}}</span>
+            </span>
+            <span>
+                <span class="mr-3"><i class="far fa-calendar-alt mr-2"></i>{{movie?.release_date | releaseDate}}</span>
+                <span class="mr-3"><i
+                        class="far fa-clock mr-2"></i>{{movie?.runtime | runtime: {mins: movie?.runtime} }}</span>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row m-0 bg-white">
+    <div class="col px-7 py-2">
+        <ul class="nav nav-pills">
+            <li class="nav-item mx-1">
+                <a class="nav-link p-2" routerLinkActive="active" [routerLink]="['/buytickets', id, name, 1]">
+                    <p class="small font-weight-dark text-center m-0">{{today | date: "dd"}}</p>
+                    <p class="small text-center m-0">Today</p>
+                </a>
+            </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link p-2" routerLinkActive="active" [routerLink]="['/buytickets', id, name, 2]">
+                    <p class="small font-weight-dark text-center m-0">{{tomorrow | date: "dd"}}</p>
+                    <p class="small text-center m-0">Tom</p>
+                </a>
+            </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link p-2" routerLinkActive="active" [routerLink]="['/buytickets', id, name, 3]">
+                    <p class="small font-weight-dark text-center m-0">{{dayaftertomorrow | date: "dd"}}</p>
+                    <p class="small text-center m-0">{{dayaftertomorrow | date: "EEE"}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+<div class="container-fluid wrapper px-7">
+    <div class="row">
+        <div class="col py-3">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let show of showObjKeys; let idx = index">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="small font-weight-bold">{{show}}</p>
+                            <span class="text-success" *ngIf="showsObj[show][0].mticket">
+                                <i class="fas fa-mobile-alt"></i> <span class="small"> M-ticket</span>
+                            </span>
+                            <span class="text-warning" *ngIf="showsObj[show][0].food_beverages">
+                                <i class="fas fa-hamburger ml-3"></i> <span class="small"> F&B</span>
+                            </span>
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class="btn btn-outline-secondary timing"
+                                (click)="openSeatNumber(seatNumber, timing)"
+                                *ngFor="let timing of showsObj[show]">{{timing.time}}</button>
+                            <div class="mt-2">
+                                <span *ngIf="showsObj[show][0].cancellation_available">
+                                    <!-- <i class="fas text-warning fa-times small ml-3"></i>  -->
+                                    <span class="small"> Cancellation Available </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<ng-template #seatNumber>
+    <div class="modal-body text-center">
+        <p class="small font-weight-bold text-center text-capitalize">
+            How many seats?
+        </p>
+        <tabset type="pills" [justified]="true">
+            <tab heading="1" (selectTab)="onSelect($event)"></tab>
+            <tab heading="2" (selectTab)="onSelect($event)"></tab>
+            <tab heading="3" (selectTab)="onSelect($event)"></tab>
+            <tab heading="4" (selectTab)="onSelect($event)"></tab>
+            <tab heading="5" (selectTab)="onSelect($event)"></tab>
+            <tab heading="6" (selectTab)="onSelect($event)"></tab>
+            <tab heading="7" (selectTab)="onSelect($event)"></tab>
+            <tab heading="8" (selectTab)="onSelect($event)"></tab>
+            <tab heading="9" (selectTab)="onSelect($event)"></tab>
+            <tab heading="10" (selectTab)="onSelect($event)"></tab>
+        </tabset>
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="small m-0">Platinum</p>
+                    <p class="small m-0">{{show.price["Platinum"] | currency: 'INR'}}</p>
+                </div>
+                <div class="col">
+                    <p class="small m-0">Gold</p>
+                    <p class="small m-0">{{show.price["Gold"] | currency: 'INR'}}</p>
+                </div>
+                <div class="col">
+                    <p class="small m-0">Silver</p>
+                    <p class="small m-0">{{show.price["Silver"] | currency: 'INR'}}</p>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-block mt-3"
+            (click)="openSeatArrangement(seatArrangement)">Select Seats</button>
+    </div>
+</ng-template>
+
+<ng-template #seatArrangement>
+    <div class="modal-header bg-dark">
+        <h6 class="modal-title text-light">
+            {{movie.name}} - {{show.language}}
+            <br />
+            <span class="small m-0 text-light">{{show.theatre_name}}</span>
+        </h6>
+        <select class="no-of-seats" [(ngModel)]="noOfSeats">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <button type="button" class="close text-light" aria-label="Close" (click)="seatArrangementRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center">
+        <div class="row">
+            <div class="col">
+                <p *ngIf="selectedDate==1">Today, {{today | date: "dd MMM"}}, {{show.time}}</p>
+            </div>
+        </div>
+        <div class="container">
+            <table cellspacing="0" cellpadding="0" style="width:100%px;" class="seat-table">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="price small">Platinum - {{show.price["Platinum"] | currency: 'INR'}}</div>
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">A</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Platinum?.A; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Platinum', 'A', idx)"
+                                    [ngClass]="{'available': seats.seats.Platinum.A[idx] == 0, 'selected': seats.seats.Platinum.A[idx] == 1, 'blocked': seats.seats.Platinum.A[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">B</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Platinum?.B; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Platinum', 'B', idx)"
+                                    [ngClass]="{'available': seats.seats.Platinum.B[idx] == 0, 'selected': seats.seats.Platinum.B[idx] == 1, 'blocked': seats.seats.Platinum.B[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="price small">Gold - {{show.price["Gold"] | currency: 'INR'}}</div>
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">C</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Gold?.C; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Gold', 'C', idx)"
+                                    [ngClass]="{'available': seats.seats.Gold.C[idx] == 0, 'selected': seats.seats.Gold.C[idx] == 1, 'blocked': seats.seats.Gold.C[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">D</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Gold?.D; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Gold', 'D', idx)"
+                                    [ngClass]="{'available': seats.seats.Gold.D[idx] == 0, 'selected': seats.seats.Gold.D[idx] == 1, 'blocked': seats.seats.Gold.D[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">E</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Gold?.E; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Gold', 'E', idx)"
+                                    [ngClass]="{'available': seats.seats.Gold.E[idx] == 0, 'selected': seats.seats.Gold.E[idx] == 1, 'blocked': seats.seats.Gold.E[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">F</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Gold?.F; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Gold', 'F', idx)"
+                                    [ngClass]="{'available': seats.seats.Gold.F[idx] == 0, 'selected': seats.seats.Gold.F[idx] == 1, 'blocked': seats.seats.Gold.F[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">G</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Gold?.G; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Gold', 'G', idx)"
+                                    [ngClass]="{'available': seats.seats.Gold.G[idx] == 0, 'selected': seats.seats.Gold.G[idx] == 1, 'blocked': seats.seats.Gold.G[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="price small">Silver - {{show.price["Silver"] | currency: 'INR'}}</div>
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">H</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Silver?.H; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Silver', 'H', idx)"
+                                    [ngClass]="{'available': seats.seats.Silver.H[idx] == 0, 'selected': seats.seats.Silver.H[idx] == 1, 'blocked': seats.seats.Silver.H[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">I</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Silver?.I; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Silver', 'I', idx)"
+                                    [ngClass]="{'available': seats.seats.Silver.I[idx] == 0, 'selected': seats.seats.Silver.I[idx] == 1, 'blocked': seats.seats.Silver.I[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="seat">J</div>
+                        </td>
+                        <td>
+                            <div class="seat" *ngFor="let seat of seats?.seats.Silver?.J; index as idx">
+                                <a href="javascript:void(0)" (click)="selectSeats('Silver', 'J', idx)"
+                                    [ngClass]="{'available': seats.seats.Silver.J[idx] == 0, 'selected': seats.seats.Silver.J[idx] == 1, 'blocked': seats.seats.Silver.J[idx] == 2}">
+                                    {{idx}}
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr />
+                            <div class="small">All eyes this way please!</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer d-block text-center">
+        <div class="row">
+            <div class="col">
+
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-block" (click)="buyTickets()"
+                    *ngIf="currentSelectedSeats.length == noOfSeats">
+                    Pay {{totalPrice | currency: 'INR'}}
+                </button>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+</ng-template>

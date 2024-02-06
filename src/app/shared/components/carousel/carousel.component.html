@@ -1,0 +1,7 @@
+<div class="p-2 bg-white">
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let image of carouselImages" class="slide">
+            <img [src]="image" alt="" width="100%">
+        </div>
+    </ngx-slick-carousel>
+</div>

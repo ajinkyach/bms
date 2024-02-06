@@ -1,0 +1,49 @@
+<!--Main Navigation-->
+<header class="w-100">
+
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-theme">
+        <div class="container-fluid mr-5 ml-5">
+            <!-- Navbar brand -->
+            <a class="navbar-brand" routerLink="/">
+                <img src="assets/defaults/logo.png" height="45" class="d-inline-block align-top" alt="logo"
+                    style="float:left;" />
+            </a>
+
+            <form class="form-inline">
+                <!-- <input type="text" placeholder="Search" class="form-control form-control-sm mr-2" /> -->
+                <button type="button" (click)="openLogin(loginTemplate)" *ngIf="!loggedInUser?.id" class="btn btn-primary btn-sm">Sign in</button>
+                <button type="button" *ngIf="loggedInUser?.id" class="btn btn-link text-light" routerLink="/profile">
+                        <i class="fas fa-user-circle"></i> Welcome, {{loggedInUser?.first_name}}
+                </button>
+                <button type="button" (click)="logout()" *ngIf="loggedInUser?.id" class="btn btn-primary btn-sm">Sign out</button>
+                <!-- <button type="button" (click)="sidebarModal.show()" class="btn btn-link text-secondary">
+                        <i class="fas fa-align-right"></i>
+                </button> -->
+            </form>
+
+        </div>
+    </nav>
+    <!--/.Navbar-->
+
+</header>
+<!--Main Navigation-->
+<!-- 
+<div bsModal #sidebarModal="bs-modal" class="modal wow slideInRight right" id="sidebar-right" tabindex="-1"
+    role="dialog" aria-labelledby="sidebar-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="sidebar-dialog" class="modal-title pull-left">Large modal</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<ng-template #loginTemplate>
+    <app-login></app-login>
+</ng-template>

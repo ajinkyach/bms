@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h6 class="modal-title">
+        Login
+    </h6>
+    <button type="button" class="close" aria-label="Close" (click)="loginRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body text-center">
+    <div class="alert alert-danger" role="alert" *ngIf="isNotValidCredentials">
+        Username and password you entered did not match our records. Please double-check and try again
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="(email== '' || password=='') && validate">
+        Username and password cannot be left blank
+    </div>
+    <form class="form" #loginForm="ngForm" (submit)="login(loginForm)" novalidate>
+        <div class="form-group text-left">
+            <label>Email</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="email" name="eml" #eml="ngModel"  placeholder="Enter Email Id" required />
+        </div>
+        <div class="form-group text-left">
+            <label>Password</label>
+            <input type="password" class="form-control form-control-sm" [(ngModel)]="password" name="pwd" placeholder="Enter password" #pwd="ngModel" required />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
+        </div>
+    </form>
+</div>

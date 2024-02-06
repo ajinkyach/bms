@@ -1,0 +1,17 @@
+.slick-next {
+    right: 25px!important;
+    z-index: 1;
+}
+
+.slick-prev {
+    left: 25px!important;
+    z-index: 1;
+}
+
+.slick-next, .slick-prev, 
+.slick-next:hover, .slick-prev:hover,
+.slick-next:focus, .slick-prev:focus,
+.slick-next:active, .slick-prev:active {
+    background: #444;
+    border-radius: 50%;
+}
